@@ -1,3 +1,4 @@
+import React from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -5,69 +6,43 @@ import {
   View,
   Image,
   ScrollView,
-  Button,
+  Pressable,
 } from "react-native";
 
+const randomImages = [
+  'https://picsum.photos/300/400?random=1',
+  'https://picsum.photos/300/400?random=2',
+  'https://picsum.photos/300/400?random=3',
+  'https://picsum.photos/300/400?random=4',
+];
+
 export default function AboutPage({ navigation }) {
+  const randomImage = randomImages[Math.floor(Math.random() * randomImages.length)];
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <View>
-          <Button
-            title="Home Page"
-            onPress={() => navigation.navigate("Home")}
-          ></Button>
+        <View style={styles.content}>
+          <View style={styles.buttonContainer}>
+            <Pressable style={styles.button} onPress={() => navigation.navigate("Home")}>
+              <Text style={styles.buttonText}>Home Page</Text>
+            </Pressable>
+            <Pressable style={styles.button} onPress={() => navigation.navigate("List")}>
+              <Text style={styles.buttonText}>List Page</Text>
+            </Pressable>
+          </View>
           <Image
-            source={require("../assets/dog.png")}
-            style={{
-              borderColor: "#eee",
-              borderWidth: 5,
-              width: 300,
-              height: 400,
-            }}
+            source={{ uri: randomImage }}
+            style={styles.image}
           />
-          <Text>
-            Lorem Ipsum: Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est
-            laborum. Sed ut perspiciatis unde omnis iste natus error sit
-            voluptatem accusantium doloremque laudantium, totam rem aperiam,
-            eaque ipsa quae ab illo inventore veritatis et quasi architecto
-            beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
-            voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
-            magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
-            quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-            adipisci velit, sed quia non numquam eius modi tempora incidunt ut
-            labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad
-            minima veniam, quis nostrum exercitationem ullam corporis suscipit
-            laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
-            vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil
-            molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas
-            nulla pariatur? Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est
-            laborum. Sed ut perspiciatis unde omnis iste natus error sit
-            voluptatem accusantium doloremque laudantium, totam rem aperiam,
-            eaque ipsa quae ab illo inventore veritatis et quasi architecto
-            beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
-            voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
-            magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
-            quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-            adipisci velit, sed quia non numquam eius modi tempora incidunt ut
-            labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad
-            minima veniam, quis nostrum exercitationem ullam corporis suscipit
-            laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
-            vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil
-            molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas
-            nulla pariatur?
+          <Text style={styles.title}>Discover the World with Us!</Text>
+          <Text style={styles.text}>
+            Embark on unforgettable journeys to breathtaking destinations. 🌍✈️{`\n`}
+            Whether you seek adventure in the mountains, relaxation on pristine beaches, or vibrant city experiences, we’ve got you covered. {`\n`}
+            {`\n`}
+            Join us as we explore hidden gems and popular spots alike. From cultural experiences to adrenaline-pumping activities, let your travel dreams come alive!{`\n`}
+            {`\n`}
+            Adventure awaits—let’s make your next trip extraordinary!
           </Text>
         </View>
       </ScrollView>
@@ -78,9 +53,51 @@ export default function AboutPage({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    // alignItems: "center",
-    // justifyContent: "center",
-    // paddingTop: 48,
+    backgroundColor: "#f8f9fa",
+  },
+  content: {
+    padding: 20,
+    alignItems: 'center',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 16,
+    width: '100%',
+  },
+  button: {
+    backgroundColor: '#3399ff',
+    paddingVertical: 12,
+    paddingHorizontal: 25,
+    borderRadius: 30,
+    elevation: 4,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  image: {
+    borderColor: "#ddd",
+    borderWidth: 5,
+    width: '100%',
+    height: 250,
+    borderRadius: 15,
+    marginBottom: 20,
+    alignSelf: 'center',
+    overflow: 'hidden',
+  },
+  title: {
+    fontSize: 24,
+    color: '#2c3e50',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  text: {
+    fontSize: 16,
+    color: '#333',
+    lineHeight: 24,
+    textAlign: 'center',
   },
 });
