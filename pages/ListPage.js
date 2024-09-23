@@ -33,6 +33,17 @@ export default function ListPage({ navigation }) {
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Explore Our Destinations</Text>
       </View>
+
+      {/* Navigation Buttons */}
+      <View style={styles.buttonContainer}>
+        <Pressable style={styles.button} onPress={() => navigation.navigate("Home")}>
+          <Text style={styles.buttonText}>Home Page</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={() => navigation.navigate("About")}>
+          <Text style={styles.buttonText}>About Page</Text>
+        </Pressable>
+      </View>
+
       <FlatList
         style={styles.contentList}
         data={data}
@@ -42,7 +53,6 @@ export default function ListPage({ navigation }) {
             <Image style={styles.image} source={{ uri: item.image }} />
             <View style={styles.cardContent}>
               <Text style={styles.title}>{item.title}</Text>
-             
             </View>
           </Pressable>
         )}
@@ -98,5 +108,22 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#2c3e50',
     fontWeight: 'bold',
-  }
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 16,
+  },
+  button: {
+    backgroundColor: '#3399ff',
+    paddingVertical: 12,
+    paddingHorizontal: 25,
+    borderRadius: 30,
+    elevation: 4,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 });
